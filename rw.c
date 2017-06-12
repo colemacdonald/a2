@@ -77,9 +77,10 @@ void rw_write(char *value, int len) {
     printf("Entered write.\n");
 
 	sem_wait(&write);
-	writers++;
 
 	while(readers > 0) { }
+
+	writers++;
 
 	write_resource(&data, value, len);
 
