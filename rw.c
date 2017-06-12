@@ -67,6 +67,8 @@ void rw_read(char *value, int len) {
 	sem_wait(&m);
 	readers--;
 	sem_post(&m);
+
+	printf("Exiting read.\n");
 }
 
 
@@ -83,4 +85,6 @@ void rw_write(char *value, int len) {
 
 	writers--;
 	sem_post(&write);
+
+	printf("Exiting write.\n");
 }
