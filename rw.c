@@ -73,18 +73,18 @@ void rw_read(char *value, int len) {
 
 
 void rw_write(char *value, int len) {
-    //printf("NOTHING IMPLEMENTED YET FOR rw_write\n");
-    printf("Entered write.\n");
+    printf("NOTHING IMPLEMENTED YET FOR rw_write\n");
+ //    printf("Entered write.\n");
 
-	sem_wait(&write);
+	// sem_wait(&write);
 
-	while(readers > 0) { }
+	// while(readers > 0) { }
 
-	writers++;
-	write_resource(&data, value, len);
-	writers--;
-    
-	sem_post(&write);
+	// writers++;
+	// write_resource(&data, value, len);
+	// writers--;
 
-	printf("Exiting write.\n");
+	// sem_post(&write);
+
+	// printf("Exiting write.\n");
 }
