@@ -27,10 +27,12 @@ void initialize_readers_writer() {
      */
     init_resource(&data, "*** INITIAL DATA ***");
 
-    char buffer[80];
-    read_resource(&data, buffer, 80);
+    // char buffer[80];
+    // read_resource(&data, buffer, 80);
 
-    printf("%s : %d\n", buffer, 80);
+    // printf("%s : %d\n", buffer, 80);
+
+    print_stats(&data);
 
     printf("Init\n");
 
