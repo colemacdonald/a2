@@ -66,10 +66,13 @@ void rw_read(char *value, int len) {
 
     printf("About to read\n");
 
+    char buffer[len + 1];
+
     print_stats(&data);
     printf("%s : %d\n", value, len);
 
-	read_resource(&data, value, len);
+	read_resource(&data, buffer, len + 1);
+    value = buffer;
 
     print_stats(&data);
     printf("%s : %d\n", value, len);
