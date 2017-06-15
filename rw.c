@@ -27,14 +27,14 @@ void initialize_readers_writer() {
      */
      init_resource(&data, "*** INITIAL DATA ***");
 
-    // if(sem_init(&m, 0, 1) < 0)
-    // {
-    // 	fprintf(stderr, "Could not initialize semaphore.\n");
-    // 	exit(0);
-    // }
+    if(sem_init(&m, 0, 1) < 0)
+    {
+    	fprintf(stderr, "Could not initialize semaphore.\n");
+    	exit(0);
+    }
 
-    // readers = 0;
-    // writers = 0;
+    readers = 0;
+    writers = 0;
     // //active_writers = 0;
 
     // // initialize reader semaphore for threads (0) [vs processes (>0)], with init value 1
