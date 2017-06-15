@@ -25,7 +25,7 @@ void initialize_readers_writer() {
      * Initialize the shared structures, including those used for
      * synchronization.
      */
-    // init_resource(&data, "*** INITIAL DATA ***");
+     init_resource(&data, "*** INITIAL DATA ***");
 
     // if(sem_init(&m, 0, 1) < 0)
     // {
