@@ -25,7 +25,9 @@ void initialize_readers_writer() {
      * Initialize the shared structures, including those used for
      * synchronization.
      */
-     init_resource(&data, "*** INITIAL DATA ***");
+    init_resource(&data, "*** INITIAL DATA ***");
+
+    printf("Init\n");
 
     if(sem_init(&m, 0, 1) < 0)
     {
@@ -54,7 +56,7 @@ void initialize_readers_writer() {
 
 
 void rw_read(char *value, int len) {
-    printf("NOTHING IMPLEMENTED YET FOR rw_read\n");
+    //printf("NOTHING IMPLEMENTED YET FOR rw_read\n");
 	printf("Entered read.\n");
 
     while(writers > 0) { }
