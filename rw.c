@@ -27,14 +27,7 @@ void initialize_readers_writer() {
      */
     init_resource(&data, "*** INITIAL DATA ***");
 
-    // char buffer[80];
-    // read_resource(&data, buffer, 80);
-
-    // printf("%s : %d\n", buffer, 80);
-
     print_stats(&data);
-
-    printf("Init\n");
 
     if(sem_init(&m, 0, 1) < 0)
     {
@@ -73,10 +66,12 @@ void rw_read(char *value, int len) {
 
     printf("About to read\n");
 
+    print_stats(&data);
     printf("%s : %d\n", value, len);
 
 	read_resource(&data, value, len);
 
+    print_stats(&data);
     printf("%s : %d\n", value, len);
 
     printf("Finished read\n");
