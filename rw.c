@@ -66,7 +66,7 @@ void rw_read(char *value, int len) {
 
 	read_resource(&data, value, len);
 
-    printf("Finished read");
+    printf("Finished read\n");
 
 	sem_wait(&m);
 	readers--;
