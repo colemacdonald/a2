@@ -72,7 +72,7 @@ void rw_read(char *value, int len) {
     printf("Finished read\n");
 
     print_stats(&data);
-    printf("Value: %s\n", value);
+    printf("Value: %s\n :", value);
 
 	sem_wait(&m);
 	readers--;
