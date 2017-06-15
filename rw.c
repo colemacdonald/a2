@@ -25,54 +25,54 @@ void initialize_readers_writer() {
      * Initialize the shared structures, including those used for
      * synchronization.
      */
-    init_resource(&data, "*** INITIAL DATA ***");
+    // init_resource(&data, "*** INITIAL DATA ***");
 
-    if(sem_init(&m, 0, 1) < 0)
-    {
-    	fprintf(stderr, "Could not initialize semaphore.\n");
-    	exit(0);
-    }
-
-    readers = 0;
-    writers = 0;
-    //active_writers = 0;
-
-    // initialize reader semaphore for threads (0) [vs processes (>0)], with init value 1
-    // if(sem_init(&read, 0, 1) < 0)
+    // if(sem_init(&m, 0, 1) < 0)
     // {
-    // 	fprintf(stderr, "Could not initialize 'read' semaphore.\n");
+    // 	fprintf(stderr, "Could not initialize semaphore.\n");
     // 	exit(0);
     // }
 
+    // readers = 0;
+    // writers = 0;
+    // //active_writers = 0;
+
     // // initialize reader semaphore for threads (0) [vs processes (>0)], with init value 1
-    if(sem_init(&write, 0, 1) < 0)
-    {
-    	fprintf(stderr, "Could not initialize 'write' semaphore.\n");
-    	exit(0);
-    }
+    // // if(sem_init(&read, 0, 1) < 0)
+    // // {
+    // // 	fprintf(stderr, "Could not initialize 'read' semaphore.\n");
+    // // 	exit(0);
+    // // }
+
+    // // // initialize reader semaphore for threads (0) [vs processes (>0)], with init value 1
+    // if(sem_init(&write, 0, 1) < 0)
+    // {
+    // 	fprintf(stderr, "Could not initialize 'write' semaphore.\n");
+    // 	exit(0);
+    // }
 }
 
 
 void rw_read(char *value, int len) {
-    //printf("NOTHING IMPLEMENTED YET FOR rw_read\n");
-	printf("Entered read.\n");
+    printf("NOTHING IMPLEMENTED YET FOR rw_read\n");
+	// printf("Entered read.\n");
 
-    sem_wait(&m);
-    while(writers > 0) { }
-    readers++;
-	sem_post(&m);
+ //    sem_wait(&m);
+ //    while(writers > 0) { }
+ //    readers++;
+	// sem_post(&m);
 
-    printf("About to read\n");
+ //    printf("About to read\n");
 
-	read_resource(&data, value, len);
+	// read_resource(&data, value, len);
 
-    printf("Finished read\n");
+ //    printf("Finished read\n");
 
-	sem_wait(&m);
-	readers--;
-	sem_post(&m);
+	// sem_wait(&m);
+	// readers--;
+	// sem_post(&m);
 
-	printf("Exiting read.\n");
+	// printf("Exiting read.\n");
 }
 
 
