@@ -64,20 +64,15 @@ void rw_read(char *value, int len) {
     readers++;
 	sem_post(&m);
 
+    print_stats(&data);
     printf("About to read\n");
 
-    char buffer[len + 1];
-
-    print_stats(&data);
-    printf("%s : %d\n", value, len);
-
-	read_resource(&data, buffer, len + 1);
-    value = buffer;
-
-    print_stats(&data);
-    printf("%s : %d\n", value, len);
+	read_resource(&data, value, len);
 
     printf("Finished read\n");
+
+    print_stats(&data);
+    printf("%s : %d\n", value, len);
 
 	sem_wait(&m);
 	readers--;
