@@ -73,7 +73,7 @@ void rw_write(char *value, int len) {
 
 	//while(readers > 0) {}
 
-    write_resource(&data, value, len);
+    //write_resource(&data, value, len);
 
 	// writers--;
 
