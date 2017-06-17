@@ -33,6 +33,14 @@ void initialize_readers_writer() {
     init_resource(&data, buffer);
 
     print_stats(&data);
+
+    if(sem_init(&m, 0, 1) < 0)
+    {
+    	fprintf(stderr, "Could not initialize semaphore.\n");
+    	exit(0);
+    }
+
+    readers = 0;
 }
 
 
