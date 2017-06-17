@@ -45,7 +45,30 @@ void initialize_readers_writer() {
 
 
 void rw_read(char *value, int len) {
-    printf("NOTHING IMPLEMENTED YET FOR rw_read\n");
+    //printf("NOTHING IMPLEMENTED YET FOR rw_read\n");
+
+    printf("Entered read.\n");
+
+    while(writers > 0) { }
+    sem_wait(&m);
+    readers++;
+	sem_post(&m);
+
+    print_stats(&data);
+    printf("About to read\n");
+
+	read_resource(&data, value, len);
+
+    printf("Finished read\n");
+
+    print_stats(&data);
+    printf("Value: (%s)\n", value);
+
+	sem_wait(&m);
+	readers--;
+	sem_post(&m);
+
+	printf("Exiting read.\n");
 }
 
 
