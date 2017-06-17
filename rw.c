@@ -66,17 +66,17 @@ void rw_read(char *value, int len) {
 
 
 void rw_write(char *value, int len) {
-	sem_wait(&m);
-	sem_wait(&write);
+	// sem_wait(&m);
+	// sem_wait(&write);
 
-	writers++;
+	// writers++;
 
 	while(readers > 0) {}
 
     write_resource(&data, value, len);
 
-	writers--;
+	// writers--;
 
-	sem_post(&write);
-	sem_post(&m);
+	// sem_post(&write);
+	// sem_post(&m);
 }
