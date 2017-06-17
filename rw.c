@@ -8,18 +8,31 @@
 #include "rw.h"
 #include "resource.h"
 
+
+#define INIT_BUFFER_LEN 30
+
 /*
  * Declarations for reader-writer shared variables -- plus concurrency-control
  * variables -- must START here.
  */
 
 static resource_t data;
+int readers;
+
+sem_t m;
 
 void initialize_readers_writer() {
     /*
      * Initialize the shared structures, including those used for
      * synchronization.
      */
+
+    char buffer[INIT_BUFFER_LEN];
+    strncpy(buffer, "*** INITIAL DATA ***", INIT_BUFFER_LEN);
+    
+    init_resource(&data, buffer);
+
+    print_stats(&data);
 }
 
 
