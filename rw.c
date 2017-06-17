@@ -18,6 +18,7 @@
 
 static resource_t data;
 int readers;
+int writers;
 
 sem_t m;
 
@@ -41,6 +42,7 @@ void initialize_readers_writer() {
     }
 
     readers = 0;
+    writers = 0;
 }
 
 
