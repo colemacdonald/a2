@@ -21,6 +21,7 @@ int readers;
 int writers;
 
 sem_t m;
+sem_t write;
 
 void initialize_readers_writer() {
     /*
@@ -29,15 +30,19 @@ void initialize_readers_writer() {
      */
 
     char buffer[INIT_BUFFER_LEN];
-    strncpy(buffer, "*** INITIAL DATA ***", INIT_BUFFER_LEN);
+    strncpy(buffer, "rw_data", INIT_BUFFER_LEN);
     
     init_resource(&data, buffer);
 
-    print_stats(&data);
-
     if(sem_init(&m, 0, 1) < 0)
     {
-    	fprintf(stderr, "Could not initialize semaphore.\n");
+    	fprintf(stderr, "Could not initialize semaphore 'm'\n");
+    	exit(0);
+    }
+
+    if(sem_init(&write, 0, 1) < 0)
+    {
+    	fprintf(stderr, "Could not initialize semaphore 'write'\n");
     	exit(0);
     }
 
@@ -47,34 +52,31 @@ void initialize_readers_writer() {
 
 
 void rw_read(char *value, int len) {
-    //printf("NOTHING IMPLEMENTED YET FOR rw_read\n");
-
-    printf("Entered read.\n");
-
     while(writers > 0) { }
     sem_wait(&m);
     readers++;
 	sem_post(&m);
 
-    print_stats(&data);
-    printf("About to read\n");
-
 	read_resource(&data, value, len);
-
-    printf("Finished read, value: (%s)\n", value);
-
-    print_stats(&data);
 
 	sem_wait(&m);
 	readers--;
 	sem_post(&m);
-
-	printf("Exiting read.\n");
 }
 
 
 void rw_write(char *value, int len) {
-    //printf("NOTHING IMPLEMENTED YET FOR rw_write\n");
+	sem_wait(&m);
+	sem_wait(&write);
+
+	writers++;
+
+	while(readers > 0) {}
+
     write_resource(&data, value, len);
-    print_stats(&data);
+
+	writers--;
+
+	sem_post(&write);
+	sem_post(&m);
 }
