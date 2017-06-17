@@ -40,11 +40,11 @@ void initialize_readers_writer() {
     	exit(0);
     }
 
-    if(sem_init(&write, 0, 1) < 0)
-    {
-    	fprintf(stderr, "Could not initialize semaphore 'write'\n");
-    	exit(0);
-    }
+    // if(sem_init(&write, 0, 1) < 0)
+    // {
+    // 	fprintf(stderr, "Could not initialize semaphore 'write'\n");
+    // 	exit(0);
+    // }
 
     readers = 0;
     writers = 0;
