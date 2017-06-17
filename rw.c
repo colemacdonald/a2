@@ -27,7 +27,7 @@ void initialize_readers_writer() {
      */
 
     char buffer[30];
-    memncpy(buffer, "*** INITIAL DATA ***\0", 21);
+    strncpy(buffer, "*** INITIAL DATA ***\0", 21);
     
     init_resource(&data, buffer);
 
