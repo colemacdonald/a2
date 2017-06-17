@@ -101,7 +101,6 @@ void *server_action(void *arg) {
         case READ: 
             printf("server: READ\n"); 
             rw_read(operand, OUTPUT_BUFFER_SIZE);
-            printf("rw_read returned\n");
             sprintf(result_message, "server: READ -- value is '%s'\n", operand);
             break;
         case WRITE: 
