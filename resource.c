@@ -21,6 +21,9 @@ void read_resource(resource_t *r, char *v, int len) {
 
     memcpy(v, r->value, 
         (MAX_RESOURCE_SIZE < len ? MAX_RESOURCE_SIZE : len));
+
+    printf("(%s)\n", v);
+
     sleep(DELAY_READ);
     r->num_reads++;
 }
