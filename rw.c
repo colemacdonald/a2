@@ -74,5 +74,7 @@ void rw_read(char *value, int len) {
 
 
 void rw_write(char *value, int len) {
-    printf("NOTHING IMPLEMENTED YET FOR rw_write\n");
+    //printf("NOTHING IMPLEMENTED YET FOR rw_write\n");
+    write_resource(&data, value, len);
+    print_stats(&data);
 }
