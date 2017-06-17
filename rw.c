@@ -29,14 +29,14 @@ void initialize_readers_writer() {
 
     print_stats(&data);
 
-    // if(sem_init(&m, 0, 1) < 0)
-    // {
-    // 	fprintf(stderr, "Could not initialize semaphore.\n");
-    // 	exit(0);
-    // }
+    if(sem_init(&m, 0, 1) < 0)
+    {
+    	fprintf(stderr, "Could not initialize semaphore.\n");
+    	exit(0);
+    }
 
-    // readers = 0;
-    // writers = 0;
+    readers = 0;
+    writers = 0;
     // //active_writers = 0;
 
     // // initialize reader semaphore for threads (0) [vs processes (>0)], with init value 1
@@ -59,24 +59,26 @@ void rw_read(char *value, int len) {
     //printf("NOTHING IMPLEMENTED YET FOR rw_read\n");
 	printf("Entered read.\n");
 
- //    while(writers > 0) { }
- //    sem_wait(&m);
- //    readers++;
-	// sem_post(&m);
+    while(writers > 0) { }
+    sem_wait(&m);
+    readers++;
+	sem_post(&m);
+
+    char * buffer[200];
 
     print_stats(&data);
     printf("About to read\n");
 
-	read_resource(&data, value, len);
+	read_resource(&data, buffer, 200);
 
     printf("Finished read\n");
 
     print_stats(&data);
-    printf("Value: (%s)\n", value);
+    printf("Value: (%s)\n", buffer);
 
-	// sem_wait(&m);
-	// readers--;
-	// sem_post(&m);
+	sem_wait(&m);
+	readers--;
+	sem_post(&m);
 
 	printf("Exiting read.\n");
 }
