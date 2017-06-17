@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
     printf("contents of buffer before call to read_resource: %s\n",
         buffer);
     read_resource(&r, buffer, BUFFER_SIZE);
-    printf("contents of buffer before call to read_resource: %s\n",
+    printf("contents of buffer after call to read_resource: %s\n", 
         buffer);
     print_stats(&r);    
 }
