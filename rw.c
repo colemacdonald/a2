@@ -47,12 +47,12 @@ void initialize_readers_writer() {
     // }
 
     readers = 0;
-    // writers = 0;
+    writers = 0;
 }
 
 
 void rw_read(char *value, int len) {
-    // while(writers > 0) { }
+    while(writers > 0) { }
     sem_wait(&m);
     readers++;
 	sem_post(&m);
