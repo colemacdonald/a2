@@ -52,7 +52,7 @@ void initialize_readers_writer() {
 
 
 void rw_read(char *value, int len) {
-    while(writers > 0) { }
+    // while(writers > 0) { }
     sem_wait(&m);
     readers++;
 	sem_post(&m);
