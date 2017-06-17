@@ -69,13 +69,13 @@ void rw_write(char *value, int len) {
 	// sem_wait(&m);
 	sem_wait(&w);
 
-	// writers++;
+	writers++;
 
 	//while(readers > 0) {}
 
     write_resource(&data, value, len);
 
-	// writers--;
+	writers--;
 
 	sem_post(&w);
 	// sem_post(&m);
