@@ -21,7 +21,7 @@ int readers;
 int writers;
 
 sem_t m;
-sem_t write;
+//sem_t write;
 
 void initialize_readers_writer() {
     /*
