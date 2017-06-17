@@ -25,7 +25,11 @@ void initialize_readers_writer() {
      * Initialize the shared structures, including those used for
      * synchronization.
      */
-    init_resource(&data, "*** INITIAL DATA ***");
+
+    char buffer[30];
+    memncpy(buffer, "*** INITIAL DATA ***\0", 21);
+    
+    init_resource(&data, buffer);
 
     print_stats(&data);
 
@@ -67,7 +71,7 @@ void rw_read(char *value, int len) {
     print_stats(&data);
     printf("About to read\n");
 
-	read_resource(&data, value, 200);
+	read_resource(&data, value, len);
 
     printf("Finished read\n");
 
