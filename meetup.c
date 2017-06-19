@@ -81,7 +81,7 @@ void join_meetup(char *value, int len) {
     else
     {
         count = 0;
-        generation++;
+        gen++;
         pthread_cond_broadcast(&barrier_q);
     }
     pthread_mutex_unlock(&m);
