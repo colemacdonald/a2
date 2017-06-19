@@ -71,8 +71,8 @@ void join_meetup(char *value, int len) {
 
     if( (count == 1 && meet_order == MEET_FIRST) )//|| (count == group_size && meet_order == MEET_LAST) )
     {
-        // while(read < group_size)
-        //     pthread_cond_wait(&barrier_q, &m);
+        while(num_read < group_size && gen != 0)
+            pthread_cond_wait(&barrier_q, &m);
 
         num_read = 0;
         printf("%s Writing - Gen: %d Count: %d\n", value, gen, count);
