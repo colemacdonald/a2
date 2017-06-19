@@ -27,10 +27,10 @@ tmux split-window -h -t $NAME
 tmux split-window -t $NAME:0.1 -v -p 75
 tmux split-window -t $NAME:0.2 -v -p 66
 tmux split-window -t $NAME:0.3 -v -p 50
-tmux split-window -t $NAME:0.4 -v -p 35
-tmux split-window -t $NAME:0.5 -v -p 20
-tmux split-window -t $NAME:0.6 -v -p 10
-tmux split-window -t $NAME:0.7 -v -p 5
+tmux split-window -t $NAME:0.4 -v -p 66
+tmux split-window -t $NAME:0.5 -v -p 66
+tmux split-window -t $NAME:0.6 -v -p 66
+tmux split-window -t $NAME:0.7 -v -p 66
 
 # tmux send-keys -t $NAME:0.0 'cd ~/csc360' C-m
 # tmux send-keys -t $NAME:0.1 'cd ~/csc360/a1' C-m
