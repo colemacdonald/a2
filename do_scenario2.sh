@@ -29,8 +29,8 @@ tmux split-window -t $NAME:0.2 -v -p 80
 tmux split-window -t $NAME:0.3 -v -p 80
 tmux split-window -t $NAME:0.4 -v -p 66
 tmux split-window -t $NAME:0.5 -v -p 66
-tmux split-window -t $NAME:0.6 -v -p 66
-tmux split-window -t $NAME:0.7 -v -p 66
+#tmux split-window -t $NAME:0.6 -v -p 66
+#tmux split-window -t $NAME:0.7 -v -p 66
 
 # tmux send-keys -t $NAME:0.0 'cd ~/csc360' C-m
 # tmux send-keys -t $NAME:0.1 'cd ~/csc360/a1' C-m
@@ -46,8 +46,8 @@ tmux send-keys -t $NAME:0.2 'curl "localhost:12949/?op=meetup&val=carol"' C-m
 tmux send-keys -t $NAME:0.3 'curl "localhost:12949/?op=meetup&val=bob"' C-m
 tmux send-keys -t $NAME:0.4 'curl "localhost:12949/?op=meetup&val=archer"' C-m
 tmux send-keys -t $NAME:0.5 'curl "localhost:12949/?op=meetup&val=dutchesse"' C-m
-tmux send-keys -t $NAME:0.6 'curl "localhost:12949/?op=meetup&val=assfuck"' C-m
-tmux send-keys -t $NAME:0.7 'curl "localhost:12949/?op=meetup&val=dick"' C-m
+#tmux send-keys -t $NAME:0.6 'curl "localhost:12949/?op=meetup&val=assfuck"' C-m
+#tmux send-keys -t $NAME:0.7 'curl "localhost:12949/?op=meetup&val=dick"' C-m
 
 
 tmux attach -t $NAME
