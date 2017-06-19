@@ -77,11 +77,13 @@ void join_meetup(char *value, int len) {
         int my_gen = gen;
         while(my_gen == gen)
             pthread_cond_wait(&barrier_q, &m);
+        read_resource(&code, value, len);
     }
     else
     {
         count = 0;
         gen++;
+        read_resource(&code, value, len);
         pthread_cond_broadcast(&barrier_q);
     }
     pthread_mutex_unlock(&m);
