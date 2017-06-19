@@ -17,7 +17,7 @@ int             group_size;
 int             meet_order;
 pthread_mutex_t m;
 pthread_cond_t  barrier_q;
-resource_t      code_word;
+resource_t      code;
 
 int             count;
 int             gen;
@@ -48,7 +48,7 @@ void initialize_meetup(int n, int mf) {
      count = 0;
      gen = 0;
 
-     init_resource(&code_word, "code");
+     init_resource(&code, "code");
 
      if(pthread_mutex_init(&m, NULL) != 0)
      {
