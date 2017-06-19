@@ -69,6 +69,7 @@ void join_meetup(char *value, int len) {
 
     if( (count == 1 && meet_order == MEET_FIRST) || (count == group_size && meet_order == MEET_LAST) )
     {
+        printf("Writing - Gen: %d Count: %d\n", gen, count);
         write_resource(&code, value, len);
     }
 
@@ -77,12 +78,15 @@ void join_meetup(char *value, int len) {
         int my_gen = gen;
         while(my_gen == gen)
             pthread_cond_wait(&barrier_q, &m);
+
+        printf("Reading - Gen: %d Count: %d\n", gen, count);
         read_resource(&code, value, len);
     }
     else
     {
         count = 0;
         gen++;
+        printf("Reading and Broadcast - Gen: %d Count: %d\n", gen, count);
         read_resource(&code, value, len);
         pthread_cond_broadcast(&barrier_q);
     }
