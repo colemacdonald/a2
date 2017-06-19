@@ -24,9 +24,9 @@ tmux split-window -h -t $NAME
 # and understand, but I cannot install ruby gems
 # right now on the linux.csc machine.
 
-tmux split-window -t $NAME:0.1 -v -p 75
-tmux split-window -t $NAME:0.2 -v -p 66
-tmux split-window -t $NAME:0.3 -v -p 50
+tmux split-window -t $NAME:0.1 -v -p 80
+tmux split-window -t $NAME:0.2 -v -p 75
+tmux split-window -t $NAME:0.3 -v -p 66
 tmux split-window -t $NAME:0.4 -v -p 66
 tmux split-window -t $NAME:0.5 -v -p 66
 tmux split-window -t $NAME:0.6 -v -p 66
