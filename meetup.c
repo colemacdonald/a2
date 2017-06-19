@@ -19,6 +19,14 @@ pthread_mutex_t m;
 pthread_cond_t  barrier_q;
 resource_t      code_word;
 
+int             count;
+int             gen;
+
+
+/*
+ * Initialize all variables above.
+ * Set count and gen to 0
+ */
 void initialize_meetup(int n, int mf) {
     char label[100];
     int i;
@@ -37,6 +45,9 @@ void initialize_meetup(int n, int mf) {
      group_size = n;
      meet_order = mf;
 
+     count = 0;
+     gen = 0;
+
      init_resource(&code_word, "code");
 
      if(pthread_mutex_init(&m, NULL) != 0)
@@ -52,5 +63,26 @@ void initialize_meetup(int n, int mf) {
 
 
 void join_meetup(char *value, int len) {
-    printf("NOTHING IMPLEMENTED YET FOR join_meetup\n");
+    //printf("NOTHING IMPLEMENTED YET FOR join_meetup\n");
+    pthread_mutex_lock(&m);
+    count++;
+
+    if( (count == 1 && meet_order == MEET_FIRST) || (count == group_size && meet_order == MEET_LAST) )
+    {
+        write_resource(&code, value, len);
+    }
+
+    if(count < group_size)
+    {
+        int my_gen = gen;
+        while(my_gen == gen)
+            pthread_cond_wait(&barrier_q, &m);
+    }
+    else
+    {
+        count = 0;
+        generation++;
+        pthread_cond_broadcast(&barrier_q);
+    }
+    pthread_mutex_unlock(&m);
 }
