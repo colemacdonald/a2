@@ -95,7 +95,7 @@ void join_meetup(char *value, int len) {
         pthread_cond_broadcast(&barrier_q);
     }
 
-    if(count < group_size)
+    if(me < group_size)
     {
         my_gen = gen;
         while(my_gen == gen || my_gen != reading_gen)
