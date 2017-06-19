@@ -69,7 +69,9 @@ void join_meetup(char *value, int len) {
     pthread_mutex_lock(&m);
     count++;
 
-    if( (count == 1 && meet_order == MEET_FIRST) )//|| (count == group_size && meet_order == MEET_LAST) )
+    int me = count;
+
+    if( (me == 1 && meet_order == MEET_FIRST) || (me == group_size && meet_order == MEET_LAST) )
     {
         while(num_read < group_size && gen != 0)
             pthread_cond_wait(&barrier_q, &m);
