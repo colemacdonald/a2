@@ -21,7 +21,7 @@ resource_t      code;
 
 int             count;
 int             gen;
-int             read;
+//int             read;
 
 
 /*
@@ -48,7 +48,7 @@ void initialize_meetup(int n, int mf) {
 
     count = 0;
     gen = 0;
-    read = 0;
+    //read = 0;
 
     init_resource(&code, "code");
 
