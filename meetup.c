@@ -80,7 +80,7 @@ void join_meetup(char *value, int len) {
 
         num_read = 0;
         reading_gen = gen;
-        printf("%s Writing - Gen: %d Count: %d Reading_gen: %d Num_read: %d\n", value, my_gen, count, reading_gen, num_read);
+        printf("%s Writing - Gen: %d Count: %d Reading_gen: %d Num_read: %d\n", value, gen, count, reading_gen, num_read);
         write_resource(&code, value, len);
     }
 
@@ -96,7 +96,7 @@ void join_meetup(char *value, int len) {
     }
     else
     {
-        printf("%s Reading and Broadcast - Gen: %d Count: %d Reading_gen: %d Num_read: %d\n", value, my_gen, count, reading_gen, num_read);
+        printf("%s Reading and Broadcast - Gen: %d Count: %d Reading_gen: %d Num_read: %d\n", value, gen, count, reading_gen, num_read);
         count = 0;
         gen++;
         read_resource(&code, value, len);
