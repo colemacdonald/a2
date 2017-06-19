@@ -74,6 +74,9 @@ void join_meetup(char *value, int len) {
     count++;
 
     int me = count;
+    int my_gen = gen;
+
+    printf("%s entered with gen = %d and count = %d\n", value, gen, count);
 
     if( (me == 1 && meet_order == MEET_FIRST) || (me == group_size && meet_order == MEET_LAST) )
     {
@@ -92,7 +95,7 @@ void join_meetup(char *value, int len) {
 
     if(count < group_size)
     {
-        int my_gen = gen;
+        my_gen = gen;
         while(my_gen == gen || my_gen != reading_gen)
             pthread_cond_wait(&barrier_q, &m);
 
