@@ -22,6 +22,7 @@ resource_t      code;
 int             count;
 int             gen;
 int             num_read;
+int             reading_gen;
 
 
 /*
@@ -49,6 +50,7 @@ void initialize_meetup(int n, int mf) {
     count = 0;
     gen = 0;
     num_read = 0;
+    reading_gen = 0;
 
     init_resource(&code, "code");
 
@@ -77,6 +79,7 @@ void join_meetup(char *value, int len) {
             pthread_cond_wait(&barrier_q, &m);
 
         num_read = 0;
+        reading_gen = gen;
         printf("%s Writing - Gen: %d Count: %d\n", value, gen, count);
         write_resource(&code, value, len);
     }
@@ -84,7 +87,7 @@ void join_meetup(char *value, int len) {
     if(count < group_size)
     {
         int my_gen = gen;
-        while(my_gen == gen)
+        while(my_gen == gen && my_gen != reading_gen)
             pthread_cond_wait(&barrier_q, &m);
 
         printf("%s Reading - Gen: %d Count: %d\n", value, gen, count);
