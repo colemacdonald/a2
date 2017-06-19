@@ -96,9 +96,9 @@ void join_meetup(char *value, int len) {
     }
     else
     {
+        printf("%s Reading and Broadcast - Gen: %d Count: %d\n", value, gen, count);
         count = 0;
         gen++;
-        printf("%s Reading and Broadcast - Gen: %d Count: %d\n", value, gen, count);
         read_resource(&code, value, len);
         num_read++;
         pthread_cond_broadcast(&barrier_q);
