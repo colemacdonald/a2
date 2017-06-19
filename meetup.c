@@ -12,6 +12,13 @@
  * Declarations for barrier shared variables -- plus concurrency-control
  * variables -- must START here.
  */
+
+int             group_size;
+int             meet_order;
+pthread_mutex_t m;
+pthread_cond_t  barrier_q;
+resource_t      code_word;
+
 void initialize_meetup(int n, int mf) {
     char label[100];
     int i;
@@ -26,6 +33,21 @@ void initialize_meetup(int n, int mf) {
      * Initialize the shared structures, including those used for
      * synchronization.
      */
+
+     group_size = n;
+     meet_order = mf;
+
+     init_resource(&code_word, "code");
+
+     if(pthread_mutex_init(&m, NULL) != 0)
+     {
+        fprintf(stderr, "Could not initialize mutex 'm'\n");
+        exit(0);
+     }
+     if(pthread_cond_init(&barrier_q, NULL) != 0)
+     {
+        fprintf(stderr, "Could not initialize condition variable 'barrier_q'\n");
+     }
 }
 
 
