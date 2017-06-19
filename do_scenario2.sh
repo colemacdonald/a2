@@ -27,6 +27,10 @@ tmux split-window -h -t $NAME
 tmux split-window -t $NAME:0.1 -v -p 75
 tmux split-window -t $NAME:0.2 -v -p 66
 tmux split-window -t $NAME:0.3 -v -p 50
+tmux split-window -t $NAME:0.4 -v -p 35
+tmux split-window -t $NAME:0.5 -v -p 20
+tmux split-window -t $NAME:0.6 -v -p 10
+tmux split-window -t $NAME:0.7 -v -p 5
 
 # tmux send-keys -t $NAME:0.0 'cd ~/csc360' C-m
 # tmux send-keys -t $NAME:0.1 'cd ~/csc360/a1' C-m
@@ -35,12 +39,16 @@ tmux select-pane -t $NAME:0.0
 tmux split-window -t $NAME:0.0 -v -p 25
 
 
-tmux send-keys -t $NAME:0.0 './myserver --meetup 2 --meetfirst' C-m
+tmux send-keys -t $NAME:0.0 './myserver --meetup 3 --meetfirst' C-m
 sleep 1
-tmux send-keys -t $NAME:0.1 'curl "localhost:18300/?op=meetup&val=alice"' C-m
-tmux send-keys -t $NAME:0.2 'curl "localhost:18300/?op=meetup&val=carol"' C-m
-tmux send-keys -t $NAME:0.3 'curl "localhost:18300/?op=meetup&val=bob"' C-m
-tmux send-keys -t $NAME:0.4 'curl "localhost:18300/?op=meetup&val=ted"' C-m
+tmux send-keys -t $NAME:0.1 'curl "localhost:12949/?op=meetup&val=alice"' C-m
+tmux send-keys -t $NAME:0.2 'curl "localhost:12949/?op=meetup&val=carol"' C-m
+tmux send-keys -t $NAME:0.3 'curl "localhost:12949/?op=meetup&val=bob"' C-m
+tmux send-keys -t $NAME:0.4 'curl "localhost:12949/?op=meetup&val=archer"' C-m
+tmux send-keys -t $NAME:0.5 'curl "localhost:12949/?op=meetup&val=dutchesse"' C-m
+tmux send-keys -t $NAME:0.6 'curl "localhost:12949/?op=meetup&val=assfuck"' C-m
+tmux send-keys -t $NAME:0.7 'curl "localhost:12949/?op=meetup&val=dick"' C-m
+
 
 tmux attach -t $NAME
 
