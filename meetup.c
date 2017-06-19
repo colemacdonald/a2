@@ -98,6 +98,8 @@ void join_meetup(char *value, int len) {
         printf("%s Reading - Gen: %d Count: %d Reading_gen: %d Num_read: %d\n", value, my_gen, me, reading_gen, num_read);
         read_resource(&code, value, len);
         num_read++;
+        if(num_read == group_size)
+            pthread_cond_broadcast(&barrier_q);
     }
     else
     {
