@@ -90,12 +90,12 @@ void join_meetup(char *value, int len) {
 
     count++;
 
-    int me = count%group_size;
-    int my_gen = count/group_size;
+    int me = count;
+    int my_gen = gen;
 
     printf("%s entered with count: %d, gen: %d\n", value, me, my_gen);
 
-    if( (me == 0 && meet_order == MEET_FIRST) || (me == group_size - 1 && meet_order == MEET_LAST) )
+    if( (me == 1 && meet_order == MEET_FIRST) || (me == group_size && meet_order == MEET_LAST) )
     {
         while(num_read < group_size && gen != 0)
             pthread_cond_wait(&barrier_q, &m);
@@ -110,7 +110,7 @@ void join_meetup(char *value, int len) {
         pthread_cond_broadcast(&barrier_q);
     }
 
-    if(me < group_size - 1)
+    if(me < group_size)
     {
         my_gen = gen;
         while(my_gen == gen || my_gen != reading_gen)
@@ -121,16 +121,14 @@ void join_meetup(char *value, int len) {
 
         //last one supposed to read
         if(num_read == group_size)
-        {
             pthread_cond_broadcast(&barrier_q);
-        }
     }
     else
     {
         while(written == 0)
             pthread_cond_wait(&barrier_q, &m);
 
-        //count = 0;
+        count = 0;
         gen++;
         written = 0;
         read_resource(&code, value, len);
