@@ -69,11 +69,8 @@ void initialize_meetup(int n, int mf) {
 
 
 void join_meetup(char *value, int len) {
-    //printf("NOTHING IMPLEMENTED YET FOR join_meetup\n");
     pthread_mutex_lock(&m);
-    // while(count == group_size)
-    //     pthread_cond_wait(&barrier_q, &m);
-    
+
     count++;
 
     int me = count;

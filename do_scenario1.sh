@@ -24,9 +24,14 @@ tmux split-window -h -t $NAME
 # and understand, but I cannot install ruby gems
 # right now on the linux.csc machine.
 
-tmux split-window -t $NAME:0.1 -v -p 75
-tmux split-window -t $NAME:0.2 -v -p 66
-tmux split-window -t $NAME:0.3 -v -p 50
+tmux split-window -t $NAME:0.1 -v -p 80
+tmux split-window -t $NAME:0.2 -v -p 80
+tmux split-window -t $NAME:0.3 -v -p 80
+tmux split-window -t $NAME:0.4 -v -p 66
+tmux split-window -t $NAME:0.5 -v -p 66
+tmux split-window -t $NAME:0.6 -v -p 66
+tmux split-window -t $NAME:0.7 -v -p 66
+
 
 # tmux send-keys -t $NAME:0.0 'cd ~/csc360' C-m
 # tmux send-keys -t $NAME:0.1 'cd ~/csc360/a1' C-m
@@ -39,11 +44,11 @@ tmux send-keys -t $NAME:0.0 './myserver' C-m
 sleep 1
 tmux send-keys -t $NAME:0.1 'curl "localhost:12949/?op=write&val=june1"' C-m
 tmux send-keys -t $NAME:0.2 'curl "localhost:12949/?op=write&val=june2"' C-m
+tmux send-keys -t $NAME:0.6 'curl "localhost:12949/?op=read"' C-m
 tmux send-keys -t $NAME:0.3 'curl "localhost:12949/?op=write&val=june3"' C-m
 tmux send-keys -t $NAME:0.4 'curl "localhost:12949/?op=write&val=june4"' C-m
-# tmux send-keys -t $NAME:0.2 'curl "localhost:12949/?op=read"' C-m
-# tmux send-keys -t $NAME:0.3 'curl "localhost:12949/?op=read"' C-m
-# tmux send-keys -t $NAME:0.4 'curl "localhost:12949/?op=read"' C-m
+tmux send-keys -t $NAME:0.5 'curl "localhost:12949/?op=read"' C-m
+tmux send-keys -t $NAME:0.7 'curl "localhost:12949/?op=read"' C-m
 
 tmux attach -t $NAME
 

@@ -23,6 +23,9 @@ int writers;
 sem_t m;
 sem_t w;
 
+/*
+ * Initialize all shared resources: data, readers, writers, m, w
+ */
 void initialize_readers_writer() {
     /*
      * Initialize the shared structures, including those used for
@@ -50,7 +53,10 @@ void initialize_readers_writer() {
     writers = 0;
 }
 
-
+/*
+ * Read from shared resource and put in value.
+ * Ensure no one is trying to write, get read sem, readers++, give read sem, read, get read sem, readers--, give read sem
+ */
 void rw_read(char *value, int len) {
     while(writers > 0) { }
     sem_wait(&m);
@@ -64,17 +70,15 @@ void rw_read(char *value, int len) {
 	sem_post(&m);
 }
 
-
+/*
+ * Write value to the shared resource.
+ * Get writers semaphore, increment writers, ensure no readers, write, decrement writers, post writers sem
+ */
 void rw_write(char *value, int len) {
 	sem_wait(&w);
-
 	writers++;
-
 	while(readers > 0) {}
-
     write_resource(&data, value, len);
-
 	writers--;
-
 	sem_post(&w);
 }
