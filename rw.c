@@ -20,7 +20,7 @@ static resource_t data;
 int readers;
 int writers;
 
-sem_t m;
+sem_t mut;
 sem_t w;
 
 /*
@@ -43,7 +43,7 @@ void initialize_readers_writer() {
     	exit(0);
     }
 
-    if(sem_init(&m, 0, 1) < 0)
+    if(sem_init(&mut, 0, 1) < 0)
     {
     	fprintf(stderr, "Could not initialize semaphore 'm'\n");
     	exit(0);
@@ -61,17 +61,17 @@ void rw_read(char *value, int len) {
 	while(writers > 0) { }
 
 	int i = 0;
-	sem_getvalue(&m, &i);
+	sem_getvalue(&mut, &i);
 	printf("Waiting on sem, value: %d\n", i);
-    sem_wait(&m);
+    sem_wait(&mut);
     readers++;
-	sem_post(&m);
+	sem_post(&mut);
 	printf("reading\n");
 	read_resource(&data, value, len);
 
-	sem_wait(&m);
+	sem_wait(&mut);
 	readers--;
-	sem_post(&m);
+	sem_post(&mut);
 }
 
 /*
