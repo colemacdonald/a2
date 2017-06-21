@@ -121,18 +121,28 @@ void join_meetup(char *value, int len) {
 
         //last one supposed to read
         if(num_read == group_size)
+        {
+            count = 0;
+            gen++;
+            written = 0;
             pthread_cond_broadcast(&barrier_q);
+        }
     }
     else
     {
         while(written == 0)
             pthread_cond_wait(&barrier_q, &m);
 
-        count = 0;
-        gen++;
-        written = 0;
         read_resource(&code, value, len);
         num_read++;
+
+        if(num_read == group_size)
+        {
+            count = 0;
+            gen++;
+            written = 0;
+        }
+
         pthread_cond_broadcast(&barrier_q);
     }
     pthread_mutex_unlock(&m);
