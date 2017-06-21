@@ -131,7 +131,7 @@ void join_meetup(char *value, int len) {
             pthread_cond_wait(&barrier_q, &m);
 
         //count = 0;
-        //gen++;
+        gen++;
         written = 0;
         read_resource(&code, value, len);
         num_read++;
