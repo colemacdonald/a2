@@ -81,5 +81,6 @@ void rw_write(char *value, int len) {
 	while(readers > 0) {}
     write_resource(&data, value, len);
 	writers--;
+	printf("Written, num writers: %d", writers);
 	sem_post(&w);
 }
