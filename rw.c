@@ -58,20 +58,20 @@ void initialize_readers_writer() {
  * Ensure no one is trying to write, get read sem, readers++, give read sem, read, get read sem, readers--, give read sem
  */
 void rw_read(char *value, int len) {
-	printf("Want to read, writers = %d\n", writers);
 	while(writers > 0) { }
-	printf("Waiting\n");
+
+	int i = 0;
+	sem_getvalue(&m, &i);
+	printf("Waiting on sem, value: %d\n", i);
     sem_wait(&m);
     readers++;
 	sem_post(&m);
 	printf("reading\n");
-
 	read_resource(&data, value, len);
 
 	sem_wait(&m);
 	readers--;
 	sem_post(&m);
-	printf("Exiting read\n");
 }
 
 /*
@@ -84,6 +84,5 @@ void rw_write(char *value, int len) {
 	while(readers > 0) {}
     write_resource(&data, value, len);
 	writers--;
-	printf("Written, num writers: %d\n", writers);
 	sem_post(&w);
 }
