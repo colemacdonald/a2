@@ -59,14 +59,10 @@ void initialize_readers_writer() {
  */
 void rw_read(char *value, int len) {
 	while(writers > 0) { }
-
-	int i = 0;
-	sem_getvalue(&mut, &i);
-	printf("Waiting on sem, value: %d\n", i);
     sem_wait(&mut);
     readers++;
 	sem_post(&mut);
-	printf("reading\n");
+	
 	read_resource(&data, value, len);
 
 	sem_wait(&mut);
@@ -79,9 +75,6 @@ void rw_read(char *value, int len) {
  * Get writers semaphore, increment writers, ensure no readers, write, decrement writers, post writers sem
  */
 void rw_write(char *value, int len) {
-	int i = 0;
-	sem_getvalue(&w, &i);
-	printf("Waiting on sem, value: %d\n", i);
 	sem_wait(&w);
 	writers++;
 	while(readers > 0) {}
