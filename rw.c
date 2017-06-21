@@ -80,7 +80,7 @@ void rw_read(char *value, int len) {
  */
 void rw_write(char *value, int len) {
 	int i = 0;
-	sem_getvalue(&m, &i);
+	sem_getvalue(&w, &i);
 	printf("Waiting on sem, value: %d\n", i);
 	sem_wait(&w);
 	writers++;
