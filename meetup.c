@@ -100,8 +100,6 @@ void join_meetup(char *value, int len) {
     int me = count;
     int my_gen = gen;
 
-    printf("%s entered with count: %d, gen: %d\n", value, me, my_gen);
-
     if( (me == 1 && meet_order == MEET_FIRST) || (me == group_size && meet_order == MEET_LAST) )
     {
         while(num_read < group_size && gen != 0)
