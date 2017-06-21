@@ -39,7 +39,7 @@ tmux select-pane -t $NAME:0.0
 tmux split-window -t $NAME:0.0 -v -p 25
 
 
-tmux send-keys -t $NAME:0.0 './myserver --meetup 3 --meetfirst' C-m
+tmux send-keys -t $NAME:0.0 './myserver --meetup 3 --meetlast' C-m
 sleep 1
 tmux send-keys -t $NAME:0.1 'curl "localhost:12949/?op=meetup&val=alice"' C-m
 tmux send-keys -t $NAME:0.2 'curl "localhost:12949/?op=meetup&val=carol"' C-m
