@@ -72,6 +72,9 @@ void initialize_meetup(int n, int mf) {
 
 /*
  *  Function called to join the meetup with code word value.
+ *
+ *  First ensures that we are ready to deal with the next generation of threads else wait  
+ *
  *  Threads start by gathering information on "who" they are (ie. the corresponding count and gen)
  *  In meet first, each thread with me (count) == 1 gets write privilege and all others only read,
  *  the me and my_gen variables help ensure that the first thread to call the meetup function gets to write regardless
@@ -88,6 +91,7 @@ void initialize_meetup(int n, int mf) {
 void join_meetup(char *value, int len) {
     pthread_mutex_lock(&m);
 
+    //don't allow next generation into function until we are ready for them
     while(count == group_size)
         pthread_cond_wait(&barrier_q, &m);
 
