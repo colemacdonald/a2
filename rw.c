@@ -60,9 +60,11 @@ void initialize_readers_writer() {
 void rw_read(char *value, int len) {
 	printf("Want to read, writers = %d\n", writers);
 	while(writers > 0) { }
+	printf("Waiting\n");
     sem_wait(&m);
     readers++;
 	sem_post(&m);
+	printf("reading\n");
 
 	read_resource(&data, value, len);
 
