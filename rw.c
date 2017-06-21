@@ -58,7 +58,7 @@ void initialize_readers_writer() {
  * Ensure no one is trying to write, get read sem, readers++, give read sem, read, get read sem, readers--, give read sem
  */
 void rw_read(char *value, int len) {
-	printf("Want to read\n");
+	printf("Want to read, writers = %d\n", writers);
 	while(writers > 0) { }
     sem_wait(&m);
     readers++;
